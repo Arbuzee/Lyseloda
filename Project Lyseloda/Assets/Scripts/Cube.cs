@@ -60,4 +60,9 @@ public class Cube : MonoBehaviour {
         mat.material = normal;
         activated = false;
     }
+
+    public void SetPortalInactiveColor()
+    {
+        mat.material = active;
+    }
 }

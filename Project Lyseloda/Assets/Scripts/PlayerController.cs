@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     private GameObject gameManager;
+    private GameObject groundCheck;
     private Rigidbody rgdbd;
 
     public float xSpeed = 1;
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour {
     private Vector3 pos;
 
     private float originalJumpHeight;
+    private bool isGrounded;
 
     void Start()
     {
@@ -28,9 +30,29 @@ public class PlayerController : MonoBehaviour {
         rgdbd.MovePosition(pos + new Vector3(x, 0, 0));
 
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            rgdbd.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
+            GroundCheck();
+            if (isGrounded)
+            {
+                rgdbd.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
+            }
+        }
+    }
+
+    private void GroundCheck()
+    {
+        RaycastHit hit;
+        float distance = 1f;
+        Vector3 dir = new Vector3(0, -1);
+
+        if (Physics.Raycast(transform.position, dir, out hit, distance))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
         }
     }
 

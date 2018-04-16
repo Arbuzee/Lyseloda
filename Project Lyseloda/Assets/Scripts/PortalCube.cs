@@ -46,6 +46,7 @@ public class PortalCube : MonoBehaviour {
 
     IEnumerator ResetToUsable()
     {
+        target.GetComponent<Cube>().SetPortalInactiveColor();
         yield return new WaitForSeconds(cooldown);
         GetComponent<Cube>().ResetToInactive();
         usable = true;
