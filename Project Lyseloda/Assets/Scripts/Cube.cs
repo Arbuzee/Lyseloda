@@ -8,11 +8,13 @@ public class Cube : MonoBehaviour {
 
     public Material active;
     public Material ruined;
+
     private Material normal;
     private Renderer mat;
 
-    public bool lightable;
-
+    public bool activeCounterEnabled;
+    public bool canGetRuined;
+    
     private bool activated;
 
     private void Start()
@@ -29,7 +31,7 @@ public class Cube : MonoBehaviour {
             if (activated)
             {
                 mat.material = ruined;
-                if (lightable)
+                if (canGetRuined)
                 {
                     gameManager.GetComponent<LevelManager>().PlatformRuined();
                 }
@@ -39,7 +41,7 @@ public class Cube : MonoBehaviour {
             {
                 //Contact point might be useful
                 mat.material = active;
-                if (lightable)
+                if (activeCounterEnabled)
                 {
                     gameManager.GetComponent<LevelManager>().PlatformActivated();
                 }

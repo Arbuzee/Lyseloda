@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour {
     public Vector3 startPoint;
     public Vector3 checkPoint;
 
+    private GameObject[] activatePlatforms;
     private GameObject player;
 
     private float platforms;
@@ -15,14 +16,11 @@ public class LevelManager : MonoBehaviour {
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-
-        if (GameObject.FindGameObjectsWithTag("Platform").Length > 0)
-        {
-            platforms = GameObject.FindGameObjectsWithTag("Platform").Length;
-        }
-
         SetStartPoint();
         ResetCheckPoint();
+
+        activatePlatformsCounter();
+
     }
 
 
@@ -61,5 +59,38 @@ public class LevelManager : MonoBehaviour {
     private void ResetCheckPoint()
     {
         checkPoint = startPoint;
+    }
+
+    public void ResetPlatforms()
+    {
+        foreach (GameObject tmp in activatePlatforms)
+        {
+            if (tmp.GetComponent<Cube>() != null)
+            {
+                tmp.GetComponent<Cube>().activeCounterEnabled = true;
+                tmp.GetComponent<Cube>().ResetToInactive();
+            }
+        }
+        activatePlatformsCounter();
+    }
+
+    private void activatePlatformsCounter()
+    {
+        platforms = 0;
+        if (GameObject.FindGameObjectsWithTag("Platform").Length > 0)
+        {
+            activatePlatforms = GameObject.FindGameObjectsWithTag("Platform");
+
+            foreach (GameObject tmp in activatePlatforms)
+            {
+                if (tmp.GetComponent<Cube>() != null)
+                {
+                    if (tmp.GetComponent<Cube>().activeCounterEnabled)
+                    {
+                        platforms++;
+                    }
+                }
+            }
+        }
     }
 }

@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class Deathzone : MonoBehaviour {
 
-	void OnCollisionEnter(Collision other)
+    private GameObject gameManager;
+
+    private void Start()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("GameController");
+    }
+
+    void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("yo");
+            gameManager.GetComponent<LevelManager>().ResetPlatforms();
+
             other.gameObject.GetComponent<PlayerController>().ResetToCheckPoint();
             
         }

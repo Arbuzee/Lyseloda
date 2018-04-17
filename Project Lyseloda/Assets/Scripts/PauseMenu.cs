@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
 
-    public GameObject pauseMenuPanel;
+    public GameObject pauseMenu;
 
     private bool menuOpen;
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex > 0)
+        if (SceneManager.GetActiveScene().name != "Menu")
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -31,20 +31,21 @@ public class PauseMenu : MonoBehaviour {
 
     private void OpenPauseMenu()
     {
-        pauseMenuPanel.SetActive(true);
-
+        pauseMenu.SetActive(true);
+        
         menuOpen = true;
     }
 
     public void ClosePauseMenu()
     {
-        pauseMenuPanel.SetActive(false);
+        pauseMenu.SetActive(false);
 
         menuOpen = false;
     }
 
     public void BackToMenu()
     {
+        ClosePauseMenu();
         SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }

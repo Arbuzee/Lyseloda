@@ -8,7 +8,15 @@ public class BouncyCube : MonoBehaviour {
     public float bounceHeight;
     public float bounceHeightMultiplier = 0.5f;
 
-    private bool activated;
+    public int ruinedAfterUses = 1;
+
+    private bool ruined;
+    private float startBounceHeight;
+
+    private void Start()
+    {
+        startBounceHeight = bounceHeight;
+    }
 
     void OnCollisionEnter(Collision other)
     {
@@ -16,18 +24,26 @@ public class BouncyCube : MonoBehaviour {
         {
             other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, bounceHeight, 0));
 
-            if (!activated)
+            if (ruinedAfterUses < 1)
             {
-                bounceHeight *= bounceHeightMultiplier;
+                ruined = true;
+            }
+            else
+            {
+                ruinedAfterUses--;
+            }
 
+            if (ruined)
+            {
+                if (bounceHeight >= startBounceHeight)
+                {
+                    bounceHeight *= bounceHeightMultiplier;
+                }
+                
             }
 
         }
 
     }
 
-    private void OnCollisionExit(Collision other)
-    {
-        activated = true;
-    }
 }
