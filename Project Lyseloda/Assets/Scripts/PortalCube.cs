@@ -51,4 +51,11 @@ public class PortalCube : MonoBehaviour {
         GetComponent<Cube>().ResetToInactive();
         usable = true;
     }
+
+    public void InstaResetToUsable()
+    {
+        target.GetComponent<Cube>().SetPortalInactiveColor();
+        GetComponent<Cube>().ResetToInactive();
+        usable = true;
+    }
 }

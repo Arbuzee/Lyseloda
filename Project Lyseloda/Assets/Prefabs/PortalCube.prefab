@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 199457611033813180}
   m_Layer: 0
   m_Name: PortalCube
-  m_TagString: Untagged
+  m_TagString: SpecialPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: {fileID: 2100000, guid: 137f121da2d72f441817e87597f6435e, type: 2}
   ruined: {fileID: 2100000, guid: c0d405d3b1e408a47a248474e7288dce, type: 2}
-  lightable: 0
+  activeCounterEnabled: 0
+  canGetRuined: 0
 --- !u!198 &198394309848625238
 ParticleSystem:
   m_ObjectHideFlags: 1

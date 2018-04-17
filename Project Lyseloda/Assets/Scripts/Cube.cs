@@ -30,16 +30,20 @@ public class Cube : MonoBehaviour {
         {
             if (activated)
             {
-                mat.material = ruined;
                 if (canGetRuined)
                 {
-                    gameManager.GetComponent<LevelManager>().PlatformRuined();
+                    mat.material = ruined;
+                    if (activeCounterEnabled)
+                    {
+                        gameManager.GetComponent<LevelManager>().PlatformRuined();
+                    }
+
                 }
                 
             }
             else
             {
-                //Contact point might be useful
+                activated = true;
                 mat.material = active;
                 if (activeCounterEnabled)
                 {
@@ -50,11 +54,6 @@ public class Cube : MonoBehaviour {
             
         }
 
-    }
-
-    private void OnCollisionExit(Collision other)
-    {
-        activated = true;
     }
 
     public void ResetToInactive()

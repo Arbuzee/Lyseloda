@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class BouncyCube : MonoBehaviour {
 
-
     public float bounceHeight;
     public float bounceHeightMultiplier = 0.5f;
 
     public int ruinedAfterUses = 1;
+    private int startRuinedAfterUses;
+
+    private float resetJumpHeightAfter = .25f;
 
     private bool ruined;
     private float startBounceHeight;
@@ -16,6 +18,7 @@ public class BouncyCube : MonoBehaviour {
     private void Start()
     {
         startBounceHeight = bounceHeight;
+        startRuinedAfterUses = ruinedAfterUses;
     }
 
     void OnCollisionEnter(Collision other)
@@ -23,6 +26,8 @@ public class BouncyCube : MonoBehaviour {
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, bounceHeight, 0));
+            other.gameObject.GetComponent<PlayerController>().jumpHeight = 0;
+            StartCoroutine(ResetJumpHeight(other.gameObject));
 
             if (ruinedAfterUses < 1)
             {
@@ -44,6 +49,18 @@ public class BouncyCube : MonoBehaviour {
 
         }
 
+    }
+
+    public void ResetValues()
+    {
+        bounceHeight = startBounceHeight;
+        ruinedAfterUses = startRuinedAfterUses;
+    }
+
+    IEnumerator ResetJumpHeight(GameObject player)
+    {
+        yield return new WaitForSeconds(resetJumpHeightAfter);
+        player.GetComponent<PlayerController>().ResetJumpHeight();
     }
 
 }

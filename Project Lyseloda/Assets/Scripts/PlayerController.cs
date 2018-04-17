@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour {
     public float xSpeed = 1;
     public float jumpHeight = 5;
 
+    public float distance = 2f;
+    public float radius = .5f;
+
     private Vector3 pos;
 
     private float originalJumpHeight;
@@ -43,10 +46,9 @@ public class PlayerController : MonoBehaviour {
     private void GroundCheck()
     {
         RaycastHit hit;
-        float distance = 1f;
         Vector3 dir = new Vector3(0, -1);
 
-        if (Physics.Raycast(transform.position, dir, out hit, distance))
+        if (Physics.SphereCast(transform.position, radius, dir, out hit, distance))
         {
             isGrounded = true;
         }
@@ -63,7 +65,7 @@ public class PlayerController : MonoBehaviour {
 
     public void ResetToStartPoint()
     {
-        rgdbd.MovePosition(gameManager.GetComponent<LevelManager>().startPoint);
+        transform.position = gameManager.GetComponent<LevelManager>().startPoint;
     }
 
     public void ResetToCheckPoint()

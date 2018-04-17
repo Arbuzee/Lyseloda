@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour {
     public Vector3 checkPoint;
 
     private GameObject[] activatePlatforms;
+    private GameObject[] specialPlatforms;
     private GameObject player;
 
     private float platforms;
@@ -16,11 +17,12 @@ public class LevelManager : MonoBehaviour {
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        SetStartPoint();
+        player.GetComponent<PlayerController>().ResetToStartPoint();
+        //SetStartPoint();
         ResetCheckPoint();
 
-        activatePlatformsCounter();
-
+        ActivatePlatformsCounter();
+        GetSpecialPlatforms();
     }
 
 
@@ -63,6 +65,24 @@ public class LevelManager : MonoBehaviour {
 
     public void ResetPlatforms()
     {
+        foreach (GameObject tmp in specialPlatforms)
+        {
+            if (tmp.GetComponent<Cube>() != null)
+            {
+                tmp.GetComponent<Cube>().ResetToInactive();
+            }
+
+            if (tmp.GetComponent<BouncyCube>() != null)
+            {
+                tmp.GetComponent<BouncyCube>().ResetValues();
+            }
+
+            if (tmp.GetComponent<PortalCube>() != null)
+            {
+                tmp.GetComponent<PortalCube>().InstaResetToUsable();
+            }
+        }
+
         foreach (GameObject tmp in activatePlatforms)
         {
             if (tmp.GetComponent<Cube>() != null)
@@ -71,10 +91,10 @@ public class LevelManager : MonoBehaviour {
                 tmp.GetComponent<Cube>().ResetToInactive();
             }
         }
-        activatePlatformsCounter();
+        ActivatePlatformsCounter();
     }
 
-    private void activatePlatformsCounter()
+    private void ActivatePlatformsCounter()
     {
         platforms = 0;
         if (GameObject.FindGameObjectsWithTag("Platform").Length > 0)
@@ -91,6 +111,14 @@ public class LevelManager : MonoBehaviour {
                     }
                 }
             }
+        }
+    }
+
+    private void GetSpecialPlatforms()
+    {
+        if (GameObject.FindGameObjectsWithTag("SpecialPlatform").Length > 0)
+        {
+            specialPlatforms = GameObject.FindGameObjectsWithTag("SpecialPlatform");
         }
     }
 }

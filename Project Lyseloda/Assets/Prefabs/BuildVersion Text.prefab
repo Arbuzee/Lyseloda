@@ -60,7 +60,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Pre-alpha Build v1.3 - "Pre premature closed QA release"-patch | Property
+  m_Text: 'Pre-alpha Build v1.3.2 - "Pre premature closed QA release"-patch | Property
     of Gleb Kornienko '
 --- !u!222 &222474261951017330
 CanvasRenderer:

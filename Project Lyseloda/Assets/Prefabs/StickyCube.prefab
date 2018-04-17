@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114959433650703326}
   m_Layer: 0
   m_Name: StickyCube
-  m_TagString: Untagged
+  m_TagString: SpecialPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,6 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: {fileID: 2100000, guid: 6e55f76ae8310a149a4e723b4dbbf0dc, type: 2}
   ruined: {fileID: 2100000, guid: c0d405d3b1e408a47a248474e7288dce, type: 2}
+  activeCounterEnabled: 0
+  canGetRuined: 0
 --- !u!114 &114959433650703326
 MonoBehaviour:
   m_ObjectHideFlags: 1
