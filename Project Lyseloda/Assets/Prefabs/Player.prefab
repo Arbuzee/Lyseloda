@@ -20,7 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4883974644350570}
   - component: {fileID: 54603776129056768}
+  - component: {fileID: 65206031454964878}
   - component: {fileID: 114760023307801470}
+  - component: {fileID: 114742775002537938}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -37,7 +39,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4181538050622936}
   - component: {fileID: 33341318164194910}
-  - component: {fileID: 65791118691853788}
   - component: {fileID: 23495514208052484}
   m_Layer: 0
   m_Name: Cube
@@ -129,18 +130,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 88
   m_CollisionDetection: 0
---- !u!65 &65791118691853788
+--- !u!65 &65206031454964878
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1346473715535114}
+  m_GameObject: {fileID: 1323881309652748}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114742775002537938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1323881309652748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6af99c50a1973d4b858bbbcd17b354c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collected: 0
 --- !u!114 &114760023307801470
 MonoBehaviour:
   m_ObjectHideFlags: 1
